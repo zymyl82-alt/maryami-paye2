@@ -20,14 +20,11 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-          - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: 'platform-tools'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v4
 
       - name: Install Android packages
-        run: |
-          sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+        run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
 
       - name: Create Android project
         run: |
@@ -118,7 +115,7 @@ jobs:
           cp index.html app/src/main/assets/index.html
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/gradle-build-action@v3
         with:
           gradle-version: '8.7'
 
@@ -130,4 +127,3 @@ jobs:
         with:
           name: Maryam-Smart-School-APK
           path: app/build/outputs/apk/debug/app-debug.apk
-          
