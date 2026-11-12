@@ -1,139 +1,74 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>مدرسه هوشمند مریم</title>
+<meta name="theme-color" content="#2856a6">
+<title>مدرسه هوشمند مریم – کلاس دوم</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#f1f5fb;color:#24324a;font-family:Tahoma,Arial,sans-serif}
-header{background:linear-gradient(135deg,#2856a6,#5488dc);color:white;text-align:center;padding:28px 15px;border-radius:0 0 28px 28px}
-h1{font-size:23px;margin:5px}
-header p{margin:8px 0}
-main{max-width:650px;margin:auto;padding:18px}
-h2{font-size:19px;color:#284f91}
-.books{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.book{background:white;border:0;border-radius:18px;padding:22px 8px;font-size:19px;font-weight:bold;color:#294b83;box-shadow:0 3px 12px #0001;cursor:pointer}
-.book span{display:block;font-size:35px;margin-bottom:10px}
-.panel{display:none;background:white;border-radius:18px;padding:18px;margin-top:18px;box-shadow:0 3px 12px #0001}
-button.action{background:#3166b5;color:white;border:0;border-radius:12px;padding:12px 18px;margin:5px;cursor:pointer;font-size:15px}
-.lesson{display:block;width:100%;text-align:right;background:#edf3ff;border:0;padding:14px;margin:9px 0;border-radius:12px;font-size:16px;color:#23477f}
-#reading{font-size:21px;line-height:2.2;background:#fff9e9;padding:15px;border-radius:12px}
-input{padding:12px;border:1px solid #ccd5e5;border-radius:10px;width:100%;font-size:17px}
-footer{text-align:center;color:#718096;font-size:12px;padding:25px}
+*{box-sizing:border-box}body{margin:0;background:#f1f5fb;color:#24324a;font-family:Tahoma,Arial,sans-serif;line-height:1.9}
+header{background:linear-gradient(135deg,#244b91,#6095e5);color:white;text-align:center;padding:25px 14px;border-radius:0 0 28px 28px}
+h1{font-size:23px;margin:5px}header p{margin:3px}.credit{font-size:13px;opacity:.95}
+main{max-width:760px;margin:auto;padding:16px}h2{font-size:19px;color:#284f91}
+.books{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.book{background:white;border:0;border-radius:18px;padding:18px 8px;font-size:19px;font-weight:bold;color:#294b83;box-shadow:0 3px 12px #0001;cursor:pointer}
+.book span{display:block;font-size:34px}.panel,.welcome,.progress{background:white;border-radius:18px;padding:17px;margin-top:16px;box-shadow:0 3px 12px #0001}
+.lesson{display:block;width:100%;text-align:right;background:#edf3ff;border:0;padding:13px;margin:9px 0;border-radius:12px;color:#24324a;font:inherit;cursor:pointer}
+button.action{background:#3166b5;color:white;border:0;border-radius:12px;padding:11px 16px;margin:5px;cursor:pointer;font:inherit}
+button.secondary{background:#e7edf7;color:#294b83}.question{background:#f6f8fc;padding:14px;border-radius:14px;margin:12px 0}
+.option{display:block;width:100%;text-align:right;margin:7px 0;padding:10px;border:1px solid #d9e2f2;border-radius:10px;background:white;font:inherit;cursor:pointer}
+input[type=text],input[type=number]{padding:11px;border:1px solid #ccd7e8;border-radius:10px;font:inherit;width:100%;max-width:260px}
+.small{font-size:13px;color:#66758c}.hidden{display:none}.good{color:#16804a;font-weight:bold}.bad{color:#b42318;font-weight:bold}
+footer{text-align:center;color:#718096;font-size:12px;padding:22px}
 </style>
 </head>
 <body>
-<header>
-<h1>مدرسه هوشمند مریم</h1>
-<p>آموزش و تمرین پایه دوم دبستان</p>
-<p>طراحی توسط فرنگیس نوری</p>
-<p>مشاور آموزشگاه مریم ایمانی | هرسین، کرمانشاه</p>
-<p>سال تحصیلی ۱۴۰۵–۱۴۰۶</p>
-</header>
-
+<header><h1>🌟 مدرسه هوشمند مریم 🌟</h1><p>آموزش و تمرین شیرین پایه دوم دبستان</p><p class="credit">طراحی توسط فرنگیس نوری</p><p class="credit">مشاور آموزشگاه مریم ایمانی | هرسین، استان کرمانشاه</p><p class="credit">سال تحصیلی ۱۴۰۵–۱۴۰۶</p></header>
 <main>
-<h2>کتاب‌های آموزشی</h2>
-<div class="books">
+<section class="welcome"><h2>به مدرسه‌ات خوش آمدی! 🌷</h2><p>یکی از چهار کتاب را انتخاب کن، درس بخوان، تمرین کن و ستاره بگیر.</p></section>
+<section class="books" aria-label="کتاب‌ها">
 <button class="book" onclick="openBook('fa')"><span>📖</span>فارسی</button>
-<button class="book" onclick="openBook('math')"><span>🔢</span>ریاضی</button>
+<button class="book" onclick="openBook('math')"><span>➕</span>ریاضی</button>
 <button class="book" onclick="openBook('science')"><span>🔬</span>علوم</button>
-<button class="book" onclick="openBook('quran')"><span>📗</span>قرآن</button>
-</div>
-
-<section class="panel" id="fa">
-<h2>کتاب فارسی</h2>
-<p>درس مورد نظر را انتخاب کن و با صدای بلند بخوان.</p>
-<div id="lessons"></div>
-<div id="readingBox" style="display:none">
-<h2 id="lessonTitle"></h2>
-<div id="reading"></div>
-<button class="action" onclick="speakText()">🔊 شنیدن متن</button>
-<button class="action" onclick="stopSpeech()">توقف صدا</button>
-<p>پس از خواندن، تمرین خود را انجام بده.</p>
-<input id="answer" placeholder="پاسخ خود را بنویس">
-<button class="action" onclick="checkAnswer()">بررسی پاسخ</button>
-<p id="result"></p>
-</div>
+<button class="book" onclick="openBook('quran')"><span>📿</span>قرآن</button>
 </section>
-
-<section class="panel" id="math">
-<h2>ریاضی</h2>
-<p>حاصل جمع ۲۵ و ۱۳ چند می‌شود؟</p>
-<input id="mathAnswer" inputmode="numeric" placeholder="پاسخ">
-<button class="action" onclick="checkMath()">بررسی</button>
-<p id="mathResult"></p>
-</section>
-
-<section class="panel" id="science">
-<h2>علوم</h2>
-<p>کدام مورد برای رشد گیاه لازم است؟</p>
-<button class="lesson" onclick="scienceCheck(false)">سنگ و پلاستیک</button>
-<button class="lesson" onclick="scienceCheck(true)">آب و نور خورشید</button>
-<p id="scienceResult"></p>
-</section>
-
-<section class="panel" id="quran">
-<h2>قرآن</h2>
-<p>تمرین قرآن: با کمک آموزگار یا والدین، آیات درس را از روی کتاب بخوان.</p>
-<p>برای شنیدن تلاوت، از فایل صوتی مجاز و آموزشی استفاده خواهد شد.</p>
-</section>
+<section id="panel" class="panel hidden"><button class="action secondary" onclick="home()">⬅ بازگشت به کتاب‌ها</button><div id="content"></div></section>
+<section class="progress"><h2>⭐ کارنامه تلاش من</h2><p>امتیازهای به‌دست‌آمده: <b id="score">۰</b></p><p>تمرین‌های انجام‌شده: <b id="done">۰</b></p><button class="action secondary" onclick="showProgress()">نمایش گزارش پیشرفت</button><p id="report" class="small"></p></section>
 </main>
-
-<footer>مدرسه هوشمند مریم – پایه دوم دبستان</footer>
-
+<footer>با آرزوی روزهایی پر از یادگیری و شادی 🌼</footer>
 <script>
-const data=[
-{title:"درس اول: تمرین خواندن",text:"دانش‌آموز عزیز، با دقت به واژه‌ها نگاه کن. هر واژه را آرام و شمرده بخوان. سپس جمله‌ها را با صدای رسا بخوان.",question:"در هنگام خواندن باید چگونه بخوانیم؟",answer:"شمرده"},
-{title:"درس دوم: جمله‌خوانی",text:"امروز روز زیبایی است. من کتابم را باز می‌کنم و با دقت درس می‌خوانم. یادگیری با تمرین بهتر می‌شود.",question:"چه چیزی با تمرین بهتر می‌شود؟",answer:"یادگیری"},
-{title:"درس سوم: واژه‌ها",text:"کتاب، مدرسه، دانش‌آموز، دوستی و مهربانی واژه‌هایی هستند که هر روز به کار می‌بریم. آن‌ها را درست بخوان و بنویس.",question:"یکی از واژه‌های متن را بنویس.",answer:"کتاب"}
+const $=id=>document.getElementById(id);
+let stats=JSON.parse(localStorage.getItem('maryamStats')||'{"score":0,"done":0,"lessons":[]}');
+function save(){localStorage.setItem('maryamStats',JSON.stringify(stats));$('score').textContent=stats.score.toLocaleString('fa-IR');$('done').textContent=stats.done.toLocaleString('fa-IR')}
+save();
+function award(id,points=1){if(!stats.lessons.includes(id)){stats.lessons.push(id);stats.done++;stats.score+=points;save()} }
+function home(){$('panel').classList.add('hidden');$('content').innerHTML=''}
+function openBook(book){$('panel').classList.remove('hidden');let c=$('content');if(book==='fa')fa(c);if(book==='math')math(c);if(book==='science')science(c);if(book==='quran')quran(c);$('panel').scrollIntoView({behavior:'smooth'})}
+const faLessons=[
+['نشانه‌های آ و ا','آب، آسمان، مادر، باران','آب پاک و گوارا برای زندگی ما لازم است.'],
+['دوستی','دوست، مهربان، بازی، کمک','دوست خوب با دیگران مهربان است و هنگام نیاز کمک می‌کند.'],
+['طبیعت زیبا','درخت، گل، پرنده، بهار','در بهار درختان سبز می‌شوند و پرندگان آواز می‌خوانند.'],
+['خانه‌ی ما','خانواده، خانه، احترام، همکاری','در خانه با همکاری و احترام، زندگی شیرین‌تر می‌شود.'],
+['کتاب‌خوانی','کتاب، داستان، دانایی، کتابخانه','کتاب دوست دانایی است. هر روز کمی کتاب می‌خوانیم.'],
+['ایران زیبا','ایران، کوه، دریا، دشت','ایران سرزمین زیبای ما با کوه‌ها و دشت‌های فراوان است.']
 ];
-function openBook(id){
-document.querySelectorAll(".panel").forEach(x=>x.style.display="none");
-document.getElementById(id).style.display="block";
-if(id==="fa") showLessons();
-}
-function showLessons(){
-let box=document.getElementById("lessons");
-box.innerHTML="";
-data.forEach((d,i)=>{
-let b=document.createElement("button");
-b.className="lesson";
-b.textContent=d.title;
-b.onclick=()=>showLesson(i);
-box.appendChild(b);
-});
-}
-let current=0;
-function showLesson(i){
-current=i;
-document.getElementById("readingBox").style.display="block";
-document.getElementById("lessonTitle").textContent=data[i].title;
-document.getElementById("reading").textContent=data[i].text;
-document.getElementById("answer").value="";
-document.getElementById("result").textContent="";
-}
-function speakText(){
-if(!("speechSynthesis" in window)){alert("خواندن صوتی در این دستگاه پشتیبانی نمی‌شود.");return;}
-speechSynthesis.cancel();
-let u=new SpeechSynthesisUtterance(data[current].text);
-u.lang="fa-IR";u.rate=.8;speechSynthesis.speak(u);
-}
-function stopSpeech(){if("speechSynthesis" in window)speechSynthesis.cancel();}
-function checkAnswer(){
-let a=document.getElementById("answer").value.trim();
-let expected=data[current].answer;
-document.getElementById("result").textContent=
-a.includes(expected)?"آفرین! پاسخ درست است 🌟":"یک بار دیگر متن را با دقت بخوان و تلاش کن.";
-}
-function checkMath(){
-document.getElementById("mathResult").textContent=
-document.getElementById("mathAnswer").value.trim()==="38"?"آفرین! پاسخ درست است 🌟":"دوباره حساب کن.";
-}
-function scienceCheck(ok){
-document.getElementById("scienceResult").textContent=ok?"آفرین! پاسخ درست است 🌟":"دوباره فکر کن.";
-}
+function fa(c){c.innerHTML='<h2>📖 کتاب فارسی</h2><p>درس را انتخاب کن. متن را با صدای بلند بخوان و سپس تمرین کن.</p>'+faLessons.map((l,i)=>'<button class="lesson" onclick="faLesson('+i+')">درس '+(i+1).toLocaleString('fa-IR')+' : '+l[0]+'</button>').join('')+'<div id="faDetail"></div>'}
+function faLesson(i){let l=faLessons[i];$('faDetail').innerHTML='<div class="question"><h3>'+l[0]+'</h3><p><b>واژه‌ها:</b> '+l[1]+'</p><p>'+l[2]+'</p><p>حالا متن را با صدای بلند و شمرده بخوان.</p><button class="action" onclick="speakText('+JSON.stringify(l[2])+')">🔊 شنیدن متن</button><p>آیا درس را با صدای بلند خواندی؟</p><button class="action" onclick="award(\'fa'+i+'\',2);this.textContent=\'آفرین! ثبت شد ⭐\'">بله، خواندم</button></div>'}
+function speakText(t){if('speechSynthesis'in window){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='fa-IR';speechSynthesis.speak(u)}else alert('خواندن صوتی در این دستگاه پشتیبانی نمی‌شود.')}
+function math(c){c.innerHTML='<h2>➕ کتاب ریاضی</h2><p>هر بار یک تمرین تازه بساز و جواب بده.</p><div class="question"><p id="mathQ"></p><input id="mathA" type="number" placeholder="پاسخ را بنویس"><button class="action" onclick="checkMath()">بررسی پاسخ</button><button class="action secondary" onclick="newMath()">سؤال تازه</button><p id="mathResult"></p></div><h3>یادآوری ارزش مکانی</h3><p>در عدد ۴۷، رقم ۴ یعنی چهار ده‌تایی و رقم ۷ یعنی هفت یکی.</p><button class="action secondary" onclick="award('math-place',1)">این نکته را یاد گرفتم</button>' ;newMath()}
+let answer=0,mathId=0;
+function newMath(){let a=Math.floor(Math.random()*50)+10,b=Math.floor(Math.random()*30)+1,op=Math.floor(Math.random()*3);if(op===0){answer=a+b;$('mathQ').textContent=a+' + '+b+' = ؟'}else if(op===1){if(b>a)[a,b]=[b,a];answer=a-b;$('mathQ').textContent=a+' − '+b+' = ؟'}else{a=Math.floor(Math.random()*9)+2;b=Math.floor(Math.random()*9)+1;answer=a*b;$('mathQ').textContent=a+' × '+b+' = ؟'}mathId++;$('mathA').value='';$('mathResult').textContent=''}
+function checkMath(){let v=Number($('mathA').value);if($('mathA').value!==''&&v===answer){$('mathResult').innerHTML='<span class="good">آفرین! پاسخ درست است ⭐</span>';award('math-'+mathId,2)}else $('mathResult').innerHTML='<span class="bad">یک بار دیگر فکر کن. می‌توانی دوباره تلاش کنی.</span>'}
+const scienceLessons=[
+['گیاهان','گیاه برای رشد به آب، نور خورشید، هوا و خاک مناسب نیاز دارد.','گیاه برای رشد به چه چیزی نیاز دارد؟',['فقط سنگ','آب و نور و هوا','فقط تاریکی'],1],
+['جانوران','جانوران در محیط‌های گوناگون زندگی می‌کنند. بعضی در آب و بعضی روی خشکی هستند.','ماهی بیشتر کجا زندگی می‌کند؟',['در آب','روی درخت','در بیابان'],0],
+['بدن سالم','غذای متنوع، خواب کافی، ورزش و شستن دست‌ها به سلامتی کمک می‌کند.','کدام کار برای سلامتی خوب است؟',['کم‌خوابی','ورزش و غذای سالم','ننشستن دست‌ها'],1],
+['آب و هوا','آب در طبیعت به شکل باران، برف و بخار دیده می‌شود.','باران از کجا می‌بارد؟',['ابرها','سنگ‌ها','درخت‌ها'],0]
+];
+function science(c){c.innerHTML='<h2>🔬 کتاب علوم</h2><p>درس را بخوان و به پرسش آن پاسخ بده.</p>'+scienceLessons.map((x,i)=>'<button class="lesson" onclick="scienceLesson('+i+')">درس '+(i+1).toLocaleString('fa-IR')+' : '+x[0]+'</button>').join('')+'<div id="sDetail"></div>'}
+function scienceLesson(i){let x=scienceLessons[i];$('sDetail').innerHTML='<div class="question"><h3>'+x[0]+'</h3><p>'+x[1]+'</p><b>'+x[2]+'</b>'+x[3].map((v,j)=>'<button class="option" onclick="scienceAnswer('+i+','+j+')">'+(j+1).toLocaleString('fa-IR')+' ـ '+v+'</button>').join('')+'<p id="sResult"></p></div>'}
+function scienceAnswer(i,j){let x=scienceLessons[i];if(j===x[4]){$('sResult').innerHTML='<span class="good">درست گفتی! آفرین 🌟</span>';award('science'+i,2)}else $('sResult').innerHTML='<span class="bad">اشکالی ندارد؛ درس را دوباره بخوان و تلاش کن.</span>'}
+function quran(c){c.innerHTML='<h2>📿 کتاب قرآن</h2><p>سوره را انتخاب کن. می‌توانی فایل صوتی مجاز را از دستگاه خودت انتخاب کنی و همراه آن تمرین کنی.</p><label>انتخاب فایل صوتی قرآن: <input type="file" accept="audio/*" id="audioFile"></label><audio id="player" controls class="hidden" style="width:100%;margin-top:12px"></audio>'+[['حمد','بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ'],['توحید','قُلْ هُوَ اللَّهُ أَحَدٌ'],['فلق','قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ'],['ناس','قُلْ أَعُوذُ بِرَبِّ النَّاسِ']].map((x,i)=>'<div class="question"><h3>سوره '+x[0]+'</h3><p>'+x[1]+'</p><button class="action" onclick="speakText('+JSON.stringify(x[1])+')">🔊 شنیدن عبارت</button><button class="action secondary" onclick="award(\'quran'+i+'\',2)">تمرین کردم ⭐</button></div>').join('')+'<p class="small">برای پخش تلاوت کامل، فایل صوتی‌ای را انتخاب کن که اجازه استفاده از آن را داری.</p>'; $('audioFile').addEventListener('change',e=>{let f=e.target.files[0];if(f){$('player').src=URL.createObjectURL(f);$('player').classList.remove('hidden')}})}
+function showProgress(){let n=stats.lessons.length;$('report').textContent='تا اینجا '+n.toLocaleString('fa-IR')+' فعالیت ثبت کرده‌ای. هر روز کمی تمرین کن و ستاره‌های بیشتری بگیر!'}
 </script>
-</body>
-</html>
+</body></html>
