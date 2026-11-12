@@ -1,36 +1,38 @@
 
-name: Build Maryam Android APK
+name: Build Maryam Smart School APK
 
 on:
   workflow_dispatch:
   push:
-    paths:
-      - 'index.html'
-      - '.github/workflows/build.yml'
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Get project
         uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Android
+      - name: Set up Android
         uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
       - name: Create Android project
         run: |
           mkdir -p app/src/main/assets
-          mkdir -p app/src/main/java/ir/farhangis/maryamschool
-
-          cp index.html app/src/main/assets/index.html
+          mkdir -p app/src/main/java/com/maryam/school
 
           cat > settings.gradle <<'EOF'
           pluginManagement {
@@ -61,22 +63,16 @@ jobs:
           plugins {
               id 'com.android.application'
           }
-
           android {
-              namespace 'ir.farhangis.maryamschool'
+              namespace 'com.maryam.school'
               compileSdk 35
-
               defaultConfig {
-                  applicationId 'ir.farhangis.maryamschool'
+                  applicationId 'com.maryam.school'
                   minSdk 23
-                  targetSdk 28
+                  targetSdk 35
                   versionCode 1
                   versionName '1.0'
               }
-          }
-
-          dependencies {
-              implementation 'androidx.appcompat:appcompat:1.7.0'
           }
           EOF
 
@@ -90,16 +86,16 @@ jobs:
                       android:name=".MainActivity"
                       android:exported="true">
                       <intent-filter>
-                          <action android:name="android.intent.action.MAIN"/>
-                          <category android:name="android.intent.category.LAUNCHER"/>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
                       </intent-filter>
                   </activity>
               </application>
           </manifest>
           EOF
 
-          cat > app/src/main/java/ir/farhangis/maryamschool/MainActivity.java <<'EOF'
-          package ir.farhangis.maryamschool;
+          cat > app/src/main/java/com/maryam/school/MainActivity.java <<'EOF'
+          package com.maryam.school;
 
           import android.app.Activity;
           import android.os.Bundle;
@@ -114,18 +110,24 @@ jobs:
                   WebSettings settings = web.getSettings();
                   settings.setJavaScriptEnabled(true);
                   settings.setDomStorageEnabled(true);
-                  web.loadUrl("file:///android_asset/index.html");
                   setContentView(web);
+                  web.loadUrl("file:///android_asset/index.html");
               }
           }
           EOF
 
-      - name: Build APK
-        run: |
-          gradle --no-daemon assembleDebug
+          cp index.html app/src/main/assets/index.html
 
-      - name: Upload APK
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.7
+
+      - name: Build APK
+        run: gradle assembleDebug
+
+      - name: Save APK
         uses: actions/upload-artifact@v4
         with:
-          name: maryam-debug-apk
+          name: Maryam-Smart-School-APK
           path: app/build/outputs/apk/debug/app-debug.apk
