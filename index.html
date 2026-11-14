@@ -20,17 +20,50 @@ button.secondary{background:#e7edf7;color:#294b83}.question{background:#f6f8fc;p
 input[type=text],input[type=number]{padding:11px;border:1px solid #ccd7e8;border-radius:10px;font:inherit;width:100%;max-width:260px}
 .small{font-size:13px;color:#66758c}.hidden{display:none}.good{color:#16804a;font-weight:bold}.bad{color:#b42318;font-weight:bold}
 footer{text-align:center;color:#718096;font-size:12px;padding:22px}
+
+/* Cheerful, simple visual refresh for grade two */
+body{background:linear-gradient(180deg,#e8f8ff 0%,#fff8e8 58%,#f4fff0 100%);color:#29334b}
+header{position:relative;overflow:hidden;background:linear-gradient(135deg,#ff8cc6 0%,#8c7cf6 48%,#55c8ef 100%);padding:25px 14px 30px;border-radius:0 0 34px 34px;box-shadow:0 7px 0 #ffffffa8}
+header:before,header:after{content:"";position:absolute;border-radius:50%;background:#ffffff28;pointer-events:none}
+header:before{width:150px;height:150px;top:-75px;right:-30px}header:after{width:110px;height:110px;bottom:-65px;left:8%}
+header h1{font-size:clamp(22px,5vw,30px);text-shadow:0 2px 0 #6c4c9b;margin:4px}
+header p{position:relative;z-index:1}header .credit{font-size:12px}
+main{max-width:900px;padding:16px 14px 26px}
+.welcome{position:relative;text-align:center;background:linear-gradient(135deg,#fff 0%,#fff4c9 100%);border:2px solid #ffd66d;border-radius:24px;padding:17px 14px;margin:16px 0 18px;box-shadow:0 5px 0 #f3d68a}
+.welcome h2{color:#a64e9a;margin:0 0 4px}.welcome p{margin:4px 0;color:#59617a}
+.books{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.book{position:relative;overflow:hidden;min-height:145px;border:3px solid #fff;border-radius:25px;padding:15px 8px 13px;color:#fff;font-size:21px;text-shadow:0 2px 2px #0002;box-shadow:0 6px 0 #00000016,0 10px 18px #34405b18;transition:transform .15s ease}
+.book:active{transform:translateY(3px);box-shadow:0 3px 0 #00000016}
+.book span{font-size:48px;line-height:1.35;filter:drop-shadow(0 3px 2px #0002)}
+.book:nth-child(1){background:linear-gradient(145deg,#35b9f4,#2878dc)}
+.book:nth-child(2){background:linear-gradient(145deg,#55d98b,#16a66d)}
+.book:nth-child(3){background:linear-gradient(145deg,#ffc84f,#f28a25)}
+.book:nth-child(4){background:linear-gradient(145deg,#c77af2,#8750d4)}
+.book:after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;background:#ffffff20;left:-35px;top:-45px}
+.panel,.progress{border:2px solid #fff;border-radius:23px;box-shadow:0 5px 0 #dce8f0,0 10px 22px #34405b12}
+.progress{background:linear-gradient(135deg,#fff,#f0fff5)}.progress h2{color:#168b68}
+button.action{border-radius:18px;background:linear-gradient(135deg,#438fe8,#655cdb);box-shadow:0 3px 0 #344c9b;color:white;font-weight:bold}
+button.secondary{background:#fff0bd;color:#72501b;box-shadow:0 3px 0 #e9cf88}
+.lesson{background:linear-gradient(100deg,#fff,#f0f7ff);border:1px solid #dce9fb;border-right:6px solid #63b9ed;border-radius:16px;box-shadow:0 3px 8px #263b5a0b;padding:13px 15px;font-weight:bold}
+.question{background:linear-gradient(135deg,#fffdf5,#f2f8ff);border:1px solid #e8e6d8;border-radius:18px}
+.option{border:2px solid #e0e9f7;border-radius:14px;background:#fff;transition:background .15s,border-color .15s}
+.option:active{background:#eaf6ff;border-color:#72b9ec}
+input[type=text],input[type=number]{border:2px solid #dce7f5;border-radius:14px}
+footer{color:#7a7790}
+@media(max-width:420px){.book{min-height:128px;font-size:19px}.book span{font-size:42px}main{padding-left:11px;padding-right:11px}}
+@media(prefers-reduced-motion:no-preference){.book{animation:gentlePop .45s ease both}.book:nth-child(2){animation-delay:.05s}.book:nth-child(3){animation-delay:.1s}.book:nth-child(4){animation-delay:.15s}@keyframes gentlePop{from{opacity:.65;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}}
+
 </style>
 </head>
 <body>
 <header><h1>🌟 مدرسه هوشمند مریم 🌟</h1><p>آموزش و تمرین شیرین پایه دوم دبستان</p><p class="credit">طراحی توسط فرنگیس نوری</p><p class="credit">مشاور آموزشگاه مریم ایمانی | هرسین، استان کرمانشاه</p><p class="credit">سال تحصیلی ۱۴۰۵–۱۴۰۶</p></header>
 <main>
-<section class="welcome"><h2>به مدرسه‌ات خوش آمدی! 🌷</h2><p>یکی از چهار کتاب را انتخاب کن، درس بخوان، تمرین کن و ستاره بگیر.</p></section>
+<section class="welcome"><h2>سلام قهرمان کوچولو! 🌈</h2><p>امروز با هم یاد می‌گیریم، بازی می‌کنیم و ستاره می‌گیریم.</p><p aria-hidden="true" style="font-size:28px;margin:3px">🌞 🏫 🌷 🐦</p></section>
 <section class="books" aria-label="کتاب‌ها">
-<button class="book" onclick="openBook('fa')"><span>📖</span>فارسی</button>
-<button class="book" onclick="openBook('math')"><span>➕</span>ریاضی</button>
-<button class="book" onclick="openBook('science')"><span>🔬</span>علوم</button>
-<button class="book" onclick="openBook('quran')"><span>📿</span>قرآن</button>
+<button class="book" onclick="openBook('fa')" aria-label="ورود به کتاب فارسی"><span>📚</span>فارسی</button>
+<button class="book" onclick="openBook('math')" aria-label="ورود به کتاب ریاضی"><span>🔢</span>ریاضی</button>
+<button class="book" onclick="openBook('science')" aria-label="ورود به کتاب علوم"><span>🌱</span>علوم</button>
+<button class="book" onclick="openBook('quran')" aria-label="ورود به کتاب قرآن"><span>🕌</span>قرآن</button>
 </section>
 <section id="panel" class="panel hidden"><button class="action secondary" onclick="home()">⬅ بازگشت به کتاب‌ها</button><div id="content"></div></section>
 <section class="progress"><h2>⭐ کارنامه تلاش من</h2><p>امتیازهای به‌دست‌آمده: <b id="score">۰</b></p><p>تمرین‌های انجام‌شده: <b id="done">۰</b></p><button class="action secondary" onclick="showProgress()">نمایش گزارش پیشرفت</button><p id="report" class="small"></p></section>
