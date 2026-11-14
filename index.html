@@ -260,9 +260,9 @@ openBook=advancedOpenBook;
    course.lessons.forEach((l,i)=>{
      const topic=l[2],detail=l[3];
      const questions=[
-       {q:'موضوع اصلی درس «'+l[0]+'» چیست؟',opts:shuffle([topic, 'موضوعی نامرتبط با این درس','نادیده گرفتن نکته‌های آموزشی','انجام کار بدون دقت']),a:0},
-       {q:'کدام جمله با آموزش درس «'+l[0]+'» هماهنگ است؟',opts:shuffle([detail,'بهتر است هیچ‌وقت تمرین نکنیم.','برای یادگیری به مشاهده و فکر نیاز نیست.','همه پاسخ‌ها را بدون خواندن انتخاب کنیم.']),a:0},
-       {q:'برای یادآوری بهتر درس «'+l[0]+'» چه کاری مناسب است؟',opts:shuffle(['خواندن دوباره متن و انجام تمرین','کنار گذاشتن کتاب','انتخاب پاسخ بدون فکر','حذف تمرین‌ها']),a:0}
+       {q:'موضوع اصلی درس «'+l[0]+'» چیست؟',opts:shuffle([topic, 'موضوعی نامرتبط با این درس','نادیده گرفتن نکته‌های آموزشی','انجام کار بدون دقت']),correct:topic},
+       {q:'کدام جمله با آموزش درس «'+l[0]+'» هماهنگ است؟',opts:shuffle([detail,'بهتر است هیچ‌وقت تمرین نکنیم.','برای یادگیری به مشاهده و فکر نیاز نیست.','همه پاسخ‌ها را بدون خواندن انتخاب کنیم.']),correct:detail},
+       {q:'برای یادآوری بهتر درس «'+l[0]+'» چه کاری مناسب است؟',opts:shuffle(['خواندن دوباره متن و انجام تمرین','کنار گذاشتن کتاب','انتخاب پاسخ بدون فکر','حذف تمرین‌ها']),correct:'خواندن دوباره متن و انجام تمرین'}
      ];
      questions.forEach((q,j)=>pool.push({...q,id:book+'-'+i+'-'+j}));
    });
@@ -272,8 +272,7 @@ openBook=advancedOpenBook;
    host.querySelectorAll('button[data-q]').forEach(btn=>btn.onclick=()=>{
      const qi=Number(btn.dataset.q),q=selected[qi],fb=document.getElementById('exam-feedback-'+qi);
      if(fb.dataset.done)return;fb.dataset.done='1';answered++;
-     if(Number(btn.dataset.a)===q.opts.indexOf(q.opts.find(x=>x===q.opts[0])) && q.opts[0]===q.opts[0]){} 
-     const chosen=Number(btn.dataset.a),correct=q.opts.indexOf(q.opts[0]);
+     const chosen=Number(btn.dataset.a),correct=q.opts.indexOf(q.correct);
      if(chosen===correct){score++;fb.textContent='آفرین، پاسخ درست است 🌟';fb.className='good';}
      else{fb.textContent='پاسخ درست: '+q.opts[correct];fb.className='bad';}
      if(answered===selected.length){
