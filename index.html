@@ -237,4 +237,59 @@ function advancedFill(inputId,answer){const v=$(inputId).value.trim();const key=
 function showModel(id,text){$(id).textContent='راهنمای پاسخ: '+text}
 openBook=advancedOpenBook;
 </script>
+
+<script>
+/* نسخه آموزشی تکمیلی: آزمون‌های چندسؤالی و آزمون جامع */
+(function(){
+ const oldOpen=window.openBook;
+ window.openBook=function(book){
+   oldOpen(book);
+   const course=window.advancedCourses&&advancedCourses[book];
+   if(!course)return;
+   const c=document.getElementById('content');
+   if(!c || c.querySelector('#courseExam'))return;
+   const b=document.createElement('div');
+   b.id='courseExam'; b.className='question';
+   b.innerHTML='<h3>📝 آزمون جامع کتاب '+course.name+'</h3><p>از درس‌های این کتاب پرسش‌های گوناگون پاسخ بده و نتیجه‌ات را ببین.</p><button class="action" id="startCourseExam">شروع آزمون جامع</button><div id="courseExamBody"></div>';
+   c.appendChild(b);
+   document.getElementById('startCourseExam').onclick=()=>runExam(book);
+ };
+ function shuffle(a){return a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+ function runExam(book){
+   const course=advancedCourses[book],pool=[];
+   course.lessons.forEach((l,i)=>{
+     const topic=l[2],detail=l[3];
+     const questions=[
+       {q:'موضوع اصلی درس «'+l[0]+'» چیست؟',opts:shuffle([topic, 'موضوعی نامرتبط با این درس','نادیده گرفتن نکته‌های آموزشی','انجام کار بدون دقت']),a:0},
+       {q:'کدام جمله با آموزش درس «'+l[0]+'» هماهنگ است؟',opts:shuffle([detail,'بهتر است هیچ‌وقت تمرین نکنیم.','برای یادگیری به مشاهده و فکر نیاز نیست.','همه پاسخ‌ها را بدون خواندن انتخاب کنیم.']),a:0},
+       {q:'برای یادآوری بهتر درس «'+l[0]+'» چه کاری مناسب است؟',opts:shuffle(['خواندن دوباره متن و انجام تمرین','کنار گذاشتن کتاب','انتخاب پاسخ بدون فکر','حذف تمرین‌ها']),a:0}
+     ];
+     questions.forEach((q,j)=>pool.push({...q,id:book+'-'+i+'-'+j}));
+   });
+   const selected=shuffle(pool).slice(0,Math.min(12,pool.length));
+   const host=document.getElementById('courseExamBody');let score=0,answered=0;
+   host.innerHTML=selected.map((q,i)=>'<div class="question"><b>'+String(i+1).replace(/[0-9]/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d])+' ـ '+q.q+'</b>'+q.opts.map((o,j)=>'<button class="option" data-q="'+i+'" data-a="'+j+'">'+o+'</button>').join('')+'<p id="exam-feedback-'+i+'"></p></div>').join('')+'<h3 id="examResult">پاسخ‌ها را انتخاب کن.</h3>';
+   host.querySelectorAll('button[data-q]').forEach(btn=>btn.onclick=()=>{
+     const qi=Number(btn.dataset.q),q=selected[qi],fb=document.getElementById('exam-feedback-'+qi);
+     if(fb.dataset.done)return;fb.dataset.done='1';answered++;
+     if(Number(btn.dataset.a)===q.opts.indexOf(q.opts.find(x=>x===q.opts[0])) && q.opts[0]===q.opts[0]){} 
+     const chosen=Number(btn.dataset.a),correct=q.opts.indexOf(q.opts[0]);
+     if(chosen===correct){score++;fb.textContent='آفرین، پاسخ درست است 🌟';fb.className='good';}
+     else{fb.textContent='پاسخ درست: '+q.opts[correct];fb.className='bad';}
+     if(answered===selected.length){
+       document.getElementById('examResult').textContent='نتیجه: '+score+' از '+selected.length+' پاسخ درست';
+       if(typeof award==='function')award('exam-'+book+'-'+Date.now(),score);
+     }
+   });
+ }
+ const originalLesson=window.advancedLesson;
+ window.advancedLesson=function(book,i){originalLesson(book,i);const host=document.getElementById('advancedDetail');if(!host)return;
+   const course=advancedCourses[book],l=course.lessons[i];
+   const extra=document.createElement('div');extra.className='quiz-part';
+   extra.innerHTML='<h4>🎯 تمرین بیشتر این درس</h4><p>۱) '+l[2]+' را با زبان خودت توضیح بده.</p><textarea placeholder="پاسخ تشریحی خود را بنویس"></textarea><p>۲) یک نمونه از کاربرد «'+l[2]+'» در خانه یا مدرسه بنویس.</p><textarea placeholder="نمونه خود را بنویس"></textarea><p class="small">پاسخ‌های تشریحی برای گفت‌وگو با آموزگار یا والدین هستند و خودکار نمره‌دهی نمی‌شوند.</p>';
+   host.querySelector('.lesson-view')?.appendChild(extra);
+ };
+})();
+</script>
+
 </body></html>
