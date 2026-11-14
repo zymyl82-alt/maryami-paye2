@@ -244,7 +244,7 @@ openBook=advancedOpenBook;
  const oldOpen=window.openBook;
  window.openBook=function(book){
    oldOpen(book);
-   const course=window.advancedCourses&&advancedCourses[book];
+   const course=(typeof advancedCourses!=='undefined')?advancedCourses[book]:null;
    if(!course)return;
    const c=document.getElementById('content');
    if(!c || c.querySelector('#courseExam'))return;
